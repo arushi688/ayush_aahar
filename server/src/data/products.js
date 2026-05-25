@@ -42,7 +42,7 @@ const products = [
   },
   {
     id: 'chana-dal-khichdi',
-    name: 'Chana Dal Khichdi',
+    name: 'Khichdi with Goodness of Chana Dal',
     type: 'Ready to Cook',
     description: 'Traditional rice and split chickpea khichdi premix enriched with Ayurvedic herbs and digestive spices.',
     longDescription: 'Chana Dal Khichdi is a wholesome Ayurvedic meal premix combining organically sourced rice with protein-rich split chickpeas (chana dal). Enriched with a proprietary blend of digestive Ayurvedic herbs including turmeric, cumin, and coriander, this premix delivers a complete balanced meal that is easy to prepare and nourishing for all age groups.',

@@ -137,7 +137,7 @@ const traceabilityData = {
     },
     'chana-dal-khichdi': {
       id: 'chana-dal-khichdi',
-      name: 'Chana Dal Khichdi',
+      name: 'Khichdi with Goodness of Chana Dal',
       journeySteps: [
         {
           id: 1,

@@ -52,18 +52,20 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className={`relative text-sm font-medium transition-colors duration-300 ${textColor} hover:text-forest`}
-              >
-                {link.label}
-              </button>
-            ))}
-          </div>
+          {/* Desktop Navigation - only on product detail pages */}
+          {!isHome && (
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavClick(link.id)}
+                  className={`relative text-sm font-medium transition-colors duration-300 ${textColor} hover:text-forest`}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Mobile Menu Toggle */}
           <button
@@ -78,7 +80,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileOpen && (
+        {isMobileOpen && !isHome && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
