@@ -15,9 +15,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/product/:id/:tab" element={<ProductDetail />} />
-            <Route path="/label" element={<Home />} />
-            <Route path="/lab-report" element={<Home />} />
-            <Route path="/traceability" element={<Home />} />
           </Routes>
         </AnimatePresence>
       </main>

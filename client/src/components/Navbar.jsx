@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Leaf } from 'lucide-react';
 
 const navLinks = [
-  { path: '/label', label: 'Label' },
-  { path: '/lab-report', label: 'Lab Report' },
-  { path: '/traceability', label: 'Traceability' },
+  { id: 'label', label: 'Label' },
+  { id: 'lab-report', label: 'Lab Report' },
+  { id: 'traceability', label: 'Traceability' },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
 
   useEffect(() => {
@@ -24,6 +25,14 @@ export default function Navbar() {
   useEffect(() => {
     setIsMobileOpen(false);
   }, [location]);
+
+  const handleNavClick = (id) => {
+    if (isHome) {
+      document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+  };
 
   const navBg = isScrolled || !isHome
     ? 'bg-white/95 backdrop-blur-md shadow-sm'
@@ -46,19 +55,13 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative text-sm font-medium transition-colors duration-300 ${textColor} hover:text-forest group`}
+              <button
+                key={link.id}
+                onClick={() => handleNavClick(link.id)}
+                className={`relative text-sm font-medium transition-colors duration-300 ${textColor} hover:text-forest`}
               >
                 {link.label}
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold"
-                  />
-                )}
-              </Link>
+              </button>
             ))}
           </div>
 
@@ -86,19 +89,17 @@ export default function Navbar() {
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link, i) => (
                 <motion.div
-                  key={link.path}
+                  key={link.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <Link
-                    to={link.path}
-                    className={`block text-lg font-medium py-2 ${
-                      location.pathname === link.path ? 'text-forest' : 'text-text-brown'
-                    }`}
+                  <button
+                    onClick={() => handleNavClick(link.id)}
+                    className="block text-lg font-medium py-2 text-text-brown"
                   >
                     {link.label}
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
             </div>
