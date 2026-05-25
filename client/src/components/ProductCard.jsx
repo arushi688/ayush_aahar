@@ -2,6 +2,14 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
+import kaliGajarImg from '../assets/kali_gajar_kaanji.png';
+import chanaDalImg from '../assets/Chana Dal Khichdi.png';
+
+const productImages = {
+  'kali-gajar-kanji': kaliGajarImg,
+  'chana-dal-khichdi': chanaDalImg,
+};
+
 export default function ProductCard({ product, index = 0 }) {
   return (
     <motion.div
@@ -13,11 +21,13 @@ export default function ProductCard({ product, index = 0 }) {
       className="group bg-white rounded-2xl overflow-hidden gold-border shadow-md hover:shadow-2xl transition-all duration-500"
     >
       {/* Image */}
-      <div className="relative h-64 bg-gradient-to-br from-forest/10 to-olive/10 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-32 h-32 rounded-full bg-forest/10 flex items-center justify-center">
-            <span className="font-heading text-4xl text-forest">{product.name.charAt(0)}</span>
-          </div>
+      <div className="relative h-64 bg-gradient-to-br from-forest/5 to-olive/5 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center p-6">
+          <img
+            src={productImages[product.id]}
+            alt={product.name}
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+          />
         </div>
         {/* Type Badge */}
         <div className="absolute top-4 left-4">
@@ -48,12 +58,9 @@ export default function ProductCard({ product, index = 0 }) {
           ))}
         </div>
 
-        {/* Price & Action */}
+        {/* Weight & Action */}
         <div className="flex items-center justify-between pt-4 border-t border-beige">
-          <div>
-            <span className="text-lg font-semibold text-forest">{product.price}</span>
-            <span className="text-xs text-text-brown/50 ml-2">/ {product.weight}</span>
-          </div>
+          <span className="text-sm text-text-brown/60 font-medium">{product.weight}</span>
           <Link
             to={`/products#${product.id}`}
             className="flex items-center gap-1 text-sm font-medium text-gold hover:text-forest transition-colors group-hover:gap-2"

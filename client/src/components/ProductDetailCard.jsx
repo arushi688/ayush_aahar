@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, Leaf, Star } from 'lucide-react';
 
+import kaliGajarImg from '../assets/kali_gajar_kaanji.png';
+import chanaDalImg from '../assets/Chana Dal Khichdi.png';
+
+const productImages = {
+  'kali-gajar-kanji': kaliGajarImg,
+  'chana-dal-khichdi': chanaDalImg,
+};
+
 export default function ProductDetailCard({ product, index = 0 }) {
   const isReversed = index % 2 !== 0;
 
@@ -17,9 +25,11 @@ export default function ProductDetailCard({ product, index = 0 }) {
       <div className="w-full lg:w-1/2">
         <div className="relative bg-gradient-to-br from-forest/5 to-olive/10 rounded-3xl p-8 md:p-12 gold-border">
           <div className="aspect-square max-w-sm mx-auto flex items-center justify-center">
-            <div className="w-48 h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-forest/20 to-olive/20 flex items-center justify-center shadow-inner">
-              <span className="font-heading text-6xl text-forest">{product.name.charAt(0)}</span>
-            </div>
+            <img
+              src={productImages[product.id]}
+              alt={product.name}
+              className="w-full h-full object-contain"
+            />
           </div>
           {/* Decorative */}
           <div className="absolute top-4 right-4 bg-gold/10 px-3 py-1 rounded-full">
@@ -96,7 +106,7 @@ export default function ProductDetailCard({ product, index = 0 }) {
             </div>
           )}
 
-          {/* Tags & Price */}
+          {/* Tags & Weight */}
           <div className="flex items-center justify-between pt-4 border-t border-beige">
             <div className="flex gap-2">
               {product.tags?.map((tag) => (
@@ -105,10 +115,7 @@ export default function ProductDetailCard({ product, index = 0 }) {
                 </span>
               ))}
             </div>
-            <div className="text-right">
-              <p className="text-2xl font-heading font-semibold text-forest">{product.price}</p>
-              <p className="text-xs text-text-brown/50">{product.weight}</p>
-            </div>
+            <p className="text-sm text-text-brown/60 font-medium">{product.weight}</p>
           </div>
         </div>
       </div>
