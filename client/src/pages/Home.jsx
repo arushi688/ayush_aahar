@@ -23,7 +23,7 @@ const values = [
 const certifications = [
   { name: 'FSSAI Certified', desc: 'Food Safety & Standards Authority of India' },
   { name: 'Organic India (NPOP)', desc: 'National Programme for Organic Production' },
-  { name: 'AYUSH Premium Mark', desc: 'Ministry of AYUSH Quality Certification' },
+  // { name: 'AYUSH Premium Mark', desc: 'Ministry of AYUSH Quality Certification' },
   { name: 'GMP Certified', desc: 'Good Manufacturing Practices Compliance' },
   { name: 'ISO 22000', desc: 'Food Safety Management System' },
   { name: 'NABL Tested', desc: 'National Accreditation Board for Laboratories' },
@@ -102,9 +102,9 @@ export default function Home() {
             <a href="#products" className="btn-primary flex items-center gap-2 text-base">
               Explore Products <ArrowRight className="w-4 h-4" />
             </a>
-            <a href="#quality" className="btn-secondary border-white/70 text-white hover:bg-white hover:text-forest flex items-center gap-2">
+            {/* <a href="#quality" className="btn-secondary border-white/70 text-white hover:bg-white hover:text-forest flex items-center gap-2">
               <Compass className="w-4 h-4" /> Traceability Journey
-            </a>
+            </a> */}
           </motion.div>
         </motion.div>
       </section>
@@ -177,9 +177,9 @@ export default function Home() {
           >
             <span className="text-sm font-medium tracking-widest uppercase text-forest">About Us</span>
             <h2 className="font-heading text-3xl md:text-5xl font-semibold text-text-brown mt-2">The Initiative</h2>
-            <p className="text-text-brown/60 mt-3 max-w-2xl mx-auto">
+            {/* <p className="text-text-brown/60 mt-3 max-w-2xl mx-auto">
               Ayush Aahar is a Government of India initiative under the Ministry of AYUSH, promoting authentic Ayurvedic nutrition for national wellness.
-            </p>
+            </p> */}
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

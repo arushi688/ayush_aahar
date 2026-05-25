@@ -1,11 +1,10 @@
-import { Link } from 'react-router-dom';
 import { Leaf } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="bg-forest-dark text-white/90">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -19,19 +18,6 @@ export default function Footer() {
               Under the aegis of Ministry of AYUSH
             </p>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-heading text-lg font-semibold mb-4 text-gold">Quick Links</h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link to="/" className="hover:text-gold transition-colors">Products</Link></li>
-              <li><Link to="/label" className="hover:text-gold transition-colors">Label</Link></li>
-              <li><Link to="/lab-report" className="hover:text-gold transition-colors">Lab Report</Link></li>
-              <li><Link to="/traceability" className="hover:text-gold transition-colors">Traceability</Link></li>
-            </ul>
-          </div>
-
-
 
           {/* Certifications */}
           <div>
