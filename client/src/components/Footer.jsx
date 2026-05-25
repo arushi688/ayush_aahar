@@ -23,7 +23,7 @@ export default function Footer() {
           <div>
             <h4 className="font-heading text-lg font-semibold mb-4 text-gold">Certifications</h4>
             <div className="grid grid-cols-2 gap-2">
-              {['FSSAI', 'Organic India', 'GMP', 'ISO 22000', 'AYUSH Mark', 'NABL'].map((cert) => (
+              {['FSSAI', 'Organic India', 'GMP', 'ISO 22000', 'NABL'].map((cert) => (
                 <div key={cert} className="bg-white/10 rounded-lg px-3 py-2 text-xs text-center">
                   {cert}
                 </div>
