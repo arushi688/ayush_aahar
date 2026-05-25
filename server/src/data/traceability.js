@@ -125,15 +125,18 @@ const traceabilityData = {
         },
       ],
       farmLocations: [
-        { name: 'Pushkar, Rajasthan', lat: 26.49, lng: 74.55, crops: ['Black Carrot', 'Mustard'] },
-        { name: 'Jodhpur, Rajasthan', lat: 26.28, lng: 73.02, crops: ['Rock Salt', 'Spices'] },
+        { name: 'Pushkar, Rajasthan', lat: 26.49, lng: 74.55, crops: ['Black Carrot', 'Mustard Seeds'] },
+        { name: 'Jodhpur, Rajasthan', lat: 26.28, lng: 73.02, crops: ['Rock Salt', 'Red Chilli Powder'] },
+        { name: 'Agra, Uttar Pradesh', lat: 27.18, lng: 78.02, crops: ['Black Carrot', 'Mustard Seeds'] },
+        { name: 'Hathras, Uttar Pradesh', lat: 27.60, lng: 78.05, crops: ['Heeng (Asafoetida)'] },
+        { name: 'Mathura, Uttar Pradesh', lat: 27.49, lng: 77.67, crops: ['Red Chilli Powder', 'Rock Salt'] },
       ],
       stats: {
         totalFarmers: 840,
-        statesCovered: 3,
+        statesCovered: 2,
         organicAcres: 1200,
       },
-      highlightStates: ['Rajasthan'],
+      highlightStates: ['Rajasthan', 'Uttar Pradesh'],
     },
     'chana-dal-khichdi': {
       id: 'chana-dal-khichdi',
