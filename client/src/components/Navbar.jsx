@@ -4,11 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Leaf } from 'lucide-react';
 
 const navLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/products', label: 'Products' },
+  { path: '/label', label: 'Label' },
+  { path: '/lab-report', label: 'Lab Report' },
   { path: '/traceability', label: 'Traceability' },
-  { path: '/about', label: 'About' },
-  { path: '/quality', label: 'Quality' },
 ];
 
 export default function Navbar() {
@@ -64,13 +62,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Link to="/products" className="btn-primary text-sm">
-              Explore Products
-            </Link>
-          </div>
-
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -110,9 +101,6 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
-              <Link to="/products" className="btn-primary inline-block text-center w-full mt-4">
-                Explore Products
-              </Link>
             </div>
           </motion.div>
         )}

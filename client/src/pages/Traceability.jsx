@@ -6,13 +6,25 @@ import JourneyMap from '../components/traceability/JourneyMap';
 import BatchTracker from '../components/traceability/BatchTracker';
 import SustainabilityCards from '../components/traceability/SustainabilityCards';
 
+import kaliGajarImg from '../assets/kali_gajar_kaanji.png';
+import chanaDalImg from '../assets/Chana Dal Khichdi.png';
+
+const productImages = {
+  'kali-gajar-kanji': kaliGajarImg,
+  'chana-dal-khichdi': chanaDalImg,
+};
+
 export default function Traceability() {
   const { traceability, fetchTraceability } = useApp();
+  const [activeProduct, setActiveProduct] = useState('kali-gajar-kanji');
 
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchTraceability();
   }, []);
+
+  const productData = traceability?.products?.[activeProduct];
+  const productKeys = traceability?.products ? Object.keys(traceability.products) : [];
 
   return (
     <motion.div
@@ -26,7 +38,6 @@ export default function Traceability() {
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-forest-dark via-forest to-olive/80 overflow-hidden">
         <div className="absolute inset-0 grain-overlay" />
         <div className="absolute inset-0">
-          {/* Animated SVG Path */}
           <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 1200 400">
             <path
               d="M0,200 Q150,100 300,200 T600,200 T900,200 T1200,200"
@@ -67,14 +78,62 @@ export default function Traceability() {
         </div>
       </section>
 
-      {/* Journey Timeline */}
+      {/* Product Selector */}
       {traceability && (
-        <>
-          <JourneyTimeline steps={traceability.journeySteps} />
-          <JourneyMap locations={traceability.farmLocations} stats={traceability.stats} />
+        <section className="bg-cream py-10">
+          <div className="max-w-4xl mx-auto px-4">
+            <p className="text-center text-sm text-text-brown/60 uppercase tracking-widest mb-6">Select a product to trace</p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              {productKeys.map((key) => {
+                const prod = traceability.products[key];
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setActiveProduct(key)}
+                    className={`flex items-center gap-4 px-6 py-4 rounded-2xl border-2 transition-all duration-300 ${
+                      activeProduct === key
+                        ? 'border-forest bg-white shadow-lg scale-[1.02]'
+                        : 'border-beige bg-white/50 hover:border-forest/40 hover:shadow-md'
+                    }`}
+                  >
+                    <img
+                      src={productImages[key]}
+                      alt={prod.name}
+                      className="w-14 h-14 object-contain rounded-lg"
+                    />
+                    <div className="text-left">
+                      <p className={`font-heading font-semibold ${activeProduct === key ? 'text-forest' : 'text-text-brown'}`}>
+                        {prod.name}
+                      </p>
+                      <p className="text-xs text-text-brown/50">
+                        {prod.farmLocations.length} farm clusters · {prod.journeySteps.length} stages
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Product-specific traceability */}
+      {productData && (
+        <motion.div
+          key={activeProduct}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <JourneyTimeline steps={productData.journeySteps} />
+          <JourneyMap
+            locations={productData.farmLocations}
+            stats={productData.stats}
+            highlightStates={productData.highlightStates}
+          />
           <BatchTracker />
-          <SustainabilityCards steps={traceability.journeySteps} />
-        </>
+          <SustainabilityCards steps={productData.journeySteps} />
+        </motion.div>
       )}
     </motion.div>
   );

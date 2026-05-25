@@ -3,9 +3,6 @@ import { motion } from 'framer-motion';
 import { MapPin, Users, Wheat } from 'lucide-react';
 import indiaGeoJSON from '../../assets/indiaStates.json';
 
-// States where our farms are located
-const FARM_STATES = ['Rajasthan', 'Maharashtra', 'Kerala', 'Uttarakhand', 'Madhya Pradesh'];
-
 // India geographic bounds [minLng, minLat, maxLng, maxLat]
 const BOUNDS = [68, 6, 98, 38];
 const MAP_WIDTH = 500;
@@ -39,7 +36,7 @@ function getPathData(geometry) {
   return '';
 }
 
-export default function JourneyMap({ locations, stats }) {
+export default function JourneyMap({ locations, stats, highlightStates = [] }) {
   const [hoveredState, setHoveredState] = useState(null);
 
   // Precompute SVG path data for each state
@@ -47,9 +44,9 @@ export default function JourneyMap({ locations, stats }) {
     return indiaGeoJSON.features.map((feature) => ({
       name: feature.properties.st_nm,
       path: getPathData(feature.geometry),
-      isFarm: FARM_STATES.includes(feature.properties.st_nm),
+      isFarm: highlightStates.includes(feature.properties.st_nm),
     }));
-  }, []);
+  }, [highlightStates]);
 
   // Project farm locations to SVG coordinates
   const farmPins = useMemo(() => {
@@ -155,7 +152,7 @@ export default function JourneyMap({ locations, stats }) {
                 <div className="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-3 border border-beige z-10">
                   <p className="text-sm font-semibold text-text-brown">{hoveredState}</p>
                   <p className="text-xs text-text-brown/60">
-                    {FARM_STATES.includes(hoveredState) ? '🌿 Active farm cluster' : 'No active farms'}
+                    {highlightStates.includes(hoveredState) ? '🌿 Active farm cluster' : 'No active farms'}
                   </p>
                 </div>
               )}

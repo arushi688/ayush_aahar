@@ -3,10 +3,8 @@ import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Products from './pages/Products';
-import Traceability from './pages/Traceability';
-import About from './pages/About';
-import Quality from './pages/Quality';
+import ProductDetail from './pages/ProductDetail';
+
 function App() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -15,10 +13,11 @@ function App() {
         <AnimatePresence mode="wait">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/traceability" element={<Traceability />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/quality" element={<Quality />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/product/:id/:tab" element={<ProductDetail />} />
+            <Route path="/label" element={<Home />} />
+            <Route path="/lab-report" element={<Home />} />
+            <Route path="/traceability" element={<Home />} />
           </Routes>
         </AnimatePresence>
       </main>
